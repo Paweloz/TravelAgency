@@ -1,0 +1,23 @@
+package com.travel.agency.domain.dto.skyscanner;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class AvaliableRoutesDto {
+    @JsonProperty("Quotes")
+    private List<Quotes> quotes;
+    @JsonProperty("Carriers")
+    private List<Carriers> carriers;
+    @JsonProperty("Places")
+    private List<Places> places;
+
+}
