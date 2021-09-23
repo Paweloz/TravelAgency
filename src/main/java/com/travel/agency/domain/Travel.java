@@ -5,10 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jmx.export.annotation.ManagedAttribute;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -17,7 +14,6 @@ import java.util.List;
 @Entity
 @Getter
 @RequiredArgsConstructor
-@NoArgsConstructor
 public class Travel {
     @Id
     @GeneratedValue
@@ -29,7 +25,11 @@ public class Travel {
     private LocalDate startDate;
     private LocalDate finishDate;
     private BigDecimal totalPrice;
-    @ManyToMany( mappedBy = "travelList")
+    @ManyToMany(
+            targetEntity = Customer.class,
+            mappedBy = "travelList",
+            fetch = FetchType.LAZY
+    )
     private List<Customer> customerList;
 
 }

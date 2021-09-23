@@ -24,11 +24,7 @@ public class Customer {
     private String password;
     private boolean isLoggedIn;
     private String generatedKey;
-    @ManyToMany(
-            targetEntity = Travel.class,
-            mappedBy = "customerList",
-            fetch = FetchType.LAZY
-    )
+    @ManyToMany
     @JoinTable(
             name = "Customer_has_Travel",
             joinColumns = @JoinColumn(name = "CustomerID", referencedColumnName = "id"),

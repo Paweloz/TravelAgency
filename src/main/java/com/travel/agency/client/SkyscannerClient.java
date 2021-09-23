@@ -13,36 +13,40 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class FlightRadarClient {
+public class SkyscannerClient {
 
     private final RestTemplate restTemplate;
     private final SkyscannerConfig skyscannerConfig;
 
-    public List<AvaliableRoutesDto> getAvaliableRoutes(String origin, String destination, String date) {
+    public AvaliableRoutesDto getAvaliableRoutes(String origin, String destination, String date) {
         HttpHeaders headers = new HttpHeaders();
         headers.set(skyscannerConfig.getHostHeaderName(), skyscannerConfig.getHostHeaderValue());
         headers.set(skyscannerConfig.getKeyHeaderName(), skyscannerConfig.getKeyHeaderValue());
 
         HttpEntity entity = new HttpEntity(headers);
 
-        ResponseEntity<List<AvaliableRoutesDto>> response = restTemplate.exchange(
-                buildGetFlightUrl(origin,destination, date), HttpMethod.GET, entity, new ParameterizedTypeReference<>() {});
+        ResponseEntity<AvaliableRoutesDto> response =
+                restTemplate.exchange(
+                        buildGetFlightUrl(origin, destination, date),
+                        HttpMethod.GET, entity, new ParameterizedTypeReference<>() {}
+                        );
         return response.getBody();
     }
 
     private URI buildGetFlightUrl(String origin, String destination, String date) {
         return UriComponentsBuilder.fromHttpUrl(skyscannerConfig.getSkyscannerApi() + "/browseroutes/v1.0")
-                .path("US")
-                .path("PLN")
-                .path("en-US")
-                .path(origin)
-                .path(destination)
-                .path(date)
-        .build().encode().toUri();
+                .pathSegment("US")
+                .pathSegment("PLN")
+                .pathSegment("en-US")
+                .pathSegment(origin)
+                .pathSegment(destination)
+                .pathSegment(date)
+                .build()
+                .encode()
+                .toUri();
     }
 
 }
