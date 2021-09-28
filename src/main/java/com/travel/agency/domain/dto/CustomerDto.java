@@ -1,15 +1,60 @@
 package com.travel.agency.domain.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.Collections;
 
 @Data
-public class CustomerDto {
+@AllArgsConstructor
+public class CustomerDto implements UserDetails {
     private Long id;
     private String name;
     private String lastname;
     private String email;
     private String phone;
     private String password;
-    private boolean isLoggedIn;
-    private String generatedKey;
+    private String role;
+
+    public CustomerDto(String name, String lastname, String email, String phone, String password, String role) {
+        this.name = name;
+        this.lastname = lastname;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+        this.role = role;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singleton(new SimpleGrantedAuthority(role));
+    }
+    @Override
+    public String getUsername() {
+        return name;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

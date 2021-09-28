@@ -25,8 +25,6 @@ public class TravelController {
         return null;
     }
 
-    @GetMapping()
-
     @PostMapping
     public List<TravelDto> createBasicOffer() {  // not sure yet
         return null;

@@ -31,7 +31,7 @@ public class SkyscannerClient {
         ResponseEntity<AvaliableRoutesDto> response =
                 restTemplate.exchange(
                         buildGetFlightUrl(origin, destination, date),
-                        HttpMethod.GET, entity, new ParameterizedTypeReference<>() {}
+                        HttpMethod.GET, entity, new ParameterizedTypeReference<AvaliableRoutesDto>() {}
                         );
         return response.getBody();
     }
