@@ -1,25 +1,26 @@
 package com.travel.agency.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import com.travel.agency.domain.Customer;
 import com.travel.agency.domain.dto.CustomerDto;
 import com.travel.agency.mapper.CustomerMapper;
 import com.travel.agency.service.CustomerService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("v1/customer")
 @CrossOrigin(origins = "*")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CustomerController {
 
     private final CustomerService customerService;
     private final CustomerMapper customerMapper;
 
     @PostMapping()
-    public void createCustomer(@RequestBody CustomerDto customerDto) {
-       customerService.saveCustomer(customerMapper.mapCustomerDtoToDomain(customerDto));
-
+    public Boolean createCustomer(@RequestBody CustomerDto customerDto) {
+        Customer customerToSave = customerMapper.mapCustomerDtoToDomain(customerDto);
+        return customerService.saveCustomer(customerToSave) != null;
     }
 
     @PutMapping("/edit")

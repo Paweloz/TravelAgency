@@ -18,7 +18,6 @@ import java.util.Objects;
 @Entity
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Customer implements UserDetails {
     @Id
     @GeneratedValue
@@ -30,6 +29,17 @@ public class Customer implements UserDetails {
     private String phone;
     private String password;
     private String role;
+    @Transient
+    private com.travel.agency.domain.GrantedAuthority[] authorities;
+    @Transient
+    private boolean enabled;
+    @Transient
+    private boolean accountNonExpired;
+    @Transient
+    private boolean credentialsNonExpired;
+    @Transient
+    private boolean accountNonLocked;
+
     @ManyToMany
     @JoinTable(
             name = "Customer_has_Travel",

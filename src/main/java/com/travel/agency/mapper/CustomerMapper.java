@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 public class CustomerMapper {
+
     private final PasswordEncoder passwordEncoder;
+    private static final String USER_ROLE = "USER";
 
     public CustomerDto mapCustomerToDto(Customer customer) {
         return new CustomerDto(
@@ -26,11 +28,11 @@ public class CustomerMapper {
     public Customer mapCustomerDtoToDomain(CustomerDto customerDto) {
         return  new Customer(
                 customerDto.getId(),
-                customerDto.getName(),
+                customerDto.getUsername(),
                 customerDto.getLastname(),
                 customerDto.getEmail(),
                 customerDto.getPhone(),
                 passwordEncoder.encode(customerDto.getPassword()),
-                customerDto.getRole());
+                USER_ROLE);
     }
 }

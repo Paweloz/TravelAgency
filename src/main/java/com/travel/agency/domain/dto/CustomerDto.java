@@ -2,6 +2,7 @@ package com.travel.agency.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,31 +12,24 @@ import java.util.Collections;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class CustomerDto implements UserDetails {
     private Long id;
-    private String name;
+    private String username;
     private String lastname;
     private String email;
     private String phone;
     private String password;
     private String role;
-
-    public CustomerDto(String name, String lastname, String email, String phone, String password, String role) {
-        this.name = name;
-        this.lastname = lastname;
-        this.email = email;
-        this.phone = phone;
-        this.password = password;
-        this.role = role;
-    }
+    private com.travel.agency.domain.GrantedAuthority[] authorities;
+    private boolean enabled;
+    private boolean accountNonExpired;
+    private boolean credentialsNonExpired;
+    private boolean accountNonLocked;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singleton(new SimpleGrantedAuthority(role));
-    }
-    @Override
-    public String getUsername() {
-        return name;
     }
 
     @Override
@@ -56,5 +50,23 @@ public class CustomerDto implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public CustomerDto(String username, String lastname, String email, String phone, String password, String role) {
+        this.username = username;
+        this.lastname = lastname;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+        this.role = role;
+    }
+    public CustomerDto(Long id, String username, String lastname, String email, String phone, String password, String role) {
+        this.id = id;
+        this.username = username;
+        this.lastname = lastname;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+        this.role = role;
     }
 }
