@@ -12,8 +12,16 @@ public class TravelDto {
     private String origin;
     private String destination;
     private String description;
-    private LocalDate startDate;
-    private LocalDate finishDate;
+    private String startDate;
+    private String finishDate;
     private BigDecimal totalPrice;
     private List<Long> customersID;
+
+    public TravelDto(String origin, String destination, String startDate, String finishDate, BigDecimal totalPrice) {
+        this.origin = origin;
+        this.destination = destination;
+        this.startDate = startDate;
+        this.finishDate = finishDate;
+        this.totalPrice = totalPrice;
+    }
 }

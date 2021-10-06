@@ -5,10 +5,7 @@ import com.travel.agency.mapper.TravelMapper;
 import com.travel.agency.service.TravelService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,6 +27,10 @@ public class TravelController {
         return null;
     }
 
+    @GetMapping("/getTrips")
+    public List<TravelDto> getTripsByDestination(@RequestParam String origin, String destination) {
+        return travelService.findTripsByDestination(origin, destination);
+    }
 
 
 

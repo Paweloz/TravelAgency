@@ -13,6 +13,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Arrays;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -21,7 +23,7 @@ public class SkyscannerClient {
     private final RestTemplate restTemplate;
     private final SkyscannerConfig skyscannerConfig;
 
-    public AvaliableRoutesDto getAvaliableRoutes(String origin, String destination, String date) {
+    public AvaliableRoutesDto getAvaliableRoutes(String origin, String destination) {
         HttpHeaders headers = new HttpHeaders();
         headers.set(skyscannerConfig.getHostHeaderName(), skyscannerConfig.getHostHeaderValue());
         headers.set(skyscannerConfig.getKeyHeaderName(), skyscannerConfig.getKeyHeaderValue());
@@ -30,20 +32,21 @@ public class SkyscannerClient {
 
         ResponseEntity<AvaliableRoutesDto> response =
                 restTemplate.exchange(
-                        buildGetFlightUrl(origin, destination, date),
+                        buildGetFlightUrl(origin, destination),
                         HttpMethod.GET, entity, new ParameterizedTypeReference<AvaliableRoutesDto>() {}
                         );
         return response.getBody();
     }
 
-    private URI buildGetFlightUrl(String origin, String destination, String date) {
-        return UriComponentsBuilder.fromHttpUrl(skyscannerConfig.getSkyscannerApi() + "/browseroutes/v1.0")
-                .pathSegment("US")
+    private URI buildGetFlightUrl(String origin, String destination) {
+        return UriComponentsBuilder.fromHttpUrl(skyscannerConfig.getSkyscannerApi() + "/browsequotes/v1.0")
+                .pathSegment("PL")
                 .pathSegment("PLN")
-                .pathSegment("en-US")
+                .pathSegment("en-GB")
                 .pathSegment(origin)
                 .pathSegment(destination)
-                .pathSegment(date)
+                .pathSegment("anytime")
+                .pathSegment("anytime")
                 .build()
                 .encode()
                 .toUri();
