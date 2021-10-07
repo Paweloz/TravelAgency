@@ -29,7 +29,6 @@ public class SkyscannerClient {
         headers.set(skyscannerConfig.getKeyHeaderName(), skyscannerConfig.getKeyHeaderValue());
 
         HttpEntity entity = new HttpEntity(headers);
-
         ResponseEntity<AvaliableRoutesDto> response =
                 restTemplate.exchange(
                         buildGetFlightUrl(origin, destination),

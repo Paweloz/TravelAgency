@@ -6,12 +6,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Getter
-public class SkyscannerConfig {
-    @Value("${skyscanner.api}")
-    private String skyscannerApi;
+public class HotelsConfig {
+    @Value("${hotels.api}")
+    private String hotelsApi;
     @Value("${host.header.name}")
     private String hostHeaderName;
-    @Value("${skyscanner.host.header.value}")
+    @Value("${hotels.host.header.value}")
     private String hostHeaderValue;
     @Value("${key.header.name}")
     private String keyHeaderName;
