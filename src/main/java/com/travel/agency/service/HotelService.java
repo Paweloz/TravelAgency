@@ -20,8 +20,6 @@ public class HotelService {
 
     public RoomDto getPricingForRooms(String hotelId, String checkIn, String checkOut) {
         HotelDetailsDto hotelDetailsDto = hotelsClient.getPricingForHotel(hotelId, checkIn, checkOut);
-        //List<RoomDto> list = hotelMapper.mapHotelRoomsToListDto(hotelDetailsDto);
-
         return hotelMapper.mapHotelDetalisToRoomDto(hotelDetailsDto);
     }
 

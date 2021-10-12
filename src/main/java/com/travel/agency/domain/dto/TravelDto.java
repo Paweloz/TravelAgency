@@ -14,14 +14,14 @@ public class TravelDto {
     private String description;
     private String startDate;
     private String finishDate;
-    private BigDecimal totalPrice;
+    private BigDecimal flightPrice;
     private List<Long> customersID;
 
-    public TravelDto(String origin, String destination, String startDate, String finishDate, BigDecimal totalPrice) {
+    public TravelDto(String origin, String destination, String startDate, String finishDate, BigDecimal flightPrice) {
         this.origin = origin;
         this.destination = destination;
         this.startDate = startDate;
         this.finishDate = finishDate;
-        this.totalPrice = totalPrice;
+        this.flightPrice = flightPrice;
     }
 }

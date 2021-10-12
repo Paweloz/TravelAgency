@@ -8,22 +8,9 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 @Component
 public class TravelMapper {
-
-//    public TravelDto mapFetchedTripsToTravelDto(AvaliableRoutesDto avaliableRoutesDto) {
-//        return new TravelDto(
-//                avaliableRoutesDto.getPlaces().get(1).getCityName(),
-//                avaliableRoutesDto.getPlaces().get(0).getCityName(),
-//                avaliableRoutesDto.getQuotes().get(0).getOutboundLeg().getDepartureDate(),
-//                avaliableRoutesDto.getQuotes().get(0).getInboundLeg().getDepartureDate(),
-//                new BigDecimal(avaliableRoutesDto.getQuotes().get(0).getMinPrice().toString())
-//        );
-//    }
 
     public List<TravelDto> mapFetchedTripsToTravelDto(AvaliableRoutesDto avaliableRoutesDto, String origin, String destination) {
         List<TravelDto> travelDtos = new ArrayList<>();
@@ -34,7 +21,7 @@ public class TravelMapper {
                     collectRightPlaceFromResponse(avaliableRoutesDto, destination).getCityName(),
                     avaliableRoutesDto.getQuotes().get(i).getOutboundLeg().getDepartureDate().substring(0,10),
                     avaliableRoutesDto.getQuotes().get(i).getInboundLeg().getDepartureDate().substring(0,10),
-                    new BigDecimal(avaliableRoutesDto.getQuotes().get(i).getMinPrice().toString())));
+                    new BigDecimal(avaliableRoutesDto.getQuotes().get(i).getFlightPrice().toString())));
         }
         return travelDtos;
     }

@@ -6,15 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PropertyDescription {
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("starRating")
-    private String starRating;
-    @JsonProperty("featuredPrice")
-    private FeaturedPrice featuredPrice;
+public class CurrentPrice {
+    @JsonProperty("plain")
+    private BigDecimal plainPrice;
 }

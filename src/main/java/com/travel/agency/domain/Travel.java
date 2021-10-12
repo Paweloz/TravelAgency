@@ -24,7 +24,7 @@ public class Travel {
     private String description;
     private LocalDate startDate;
     private LocalDate finishDate;
-    private BigDecimal totalPrice;
+    private BigDecimal flightPrice;
     @ManyToMany(
             targetEntity = Customer.class,
             mappedBy = "travelList",

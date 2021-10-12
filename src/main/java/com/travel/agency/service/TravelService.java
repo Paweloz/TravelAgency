@@ -20,6 +20,4 @@ public class TravelService {
         AvaliableRoutesDto avaliableRoutesDto = skyscannerClient.getAvaliableRoutes(origin,destination);
         return travelMapper.mapFetchedTripsToTravelDto(avaliableRoutesDto, origin, destination);
     }
-
-    // @PostConstruct for initialize trips db
 }

@@ -10,11 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PropertyDescription {
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("starRating")
-    private String starRating;
-    @JsonProperty("featuredPrice")
-    private FeaturedPrice featuredPrice;
+public class FeaturedPrice {
+    @JsonProperty("currentPrice")
+    private CurrentPrice currentPrice;
 }

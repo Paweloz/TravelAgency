@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Quotes {
     @JsonProperty("MinPrice")
-    private BigDecimal minPrice;
+    private BigDecimal flightPrice;
     @JsonProperty("Direct")
     private boolean direct;
     @JsonProperty("OutboundLeg")

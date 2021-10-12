@@ -10,5 +10,5 @@ import java.math.BigDecimal;
 public class RoomDto {
     private String name;
     private String starRating;
-    //private BigDecimal price;
+    private BigDecimal pricePLN;
 }
