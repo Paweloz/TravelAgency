@@ -1,6 +1,4 @@
 package com.travel.agency.repository;
-
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.travel.agency.domain.Hotel;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

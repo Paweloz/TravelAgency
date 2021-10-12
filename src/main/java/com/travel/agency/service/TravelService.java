@@ -18,7 +18,7 @@ public class TravelService {
 
     public List<TravelDto> findTripsByDestination(String origin, String destination) {
         AvaliableRoutesDto avaliableRoutesDto = skyscannerClient.getAvaliableRoutes(origin,destination);
-        return travelMapper.mapFetchedTripsToTravelDto(avaliableRoutesDto);
+        return travelMapper.mapFetchedTripsToTravelDto(avaliableRoutesDto, origin, destination);
     }
 
     // @PostConstruct for initialize trips db

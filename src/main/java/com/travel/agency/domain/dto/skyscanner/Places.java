@@ -15,6 +15,8 @@ public class Places {
     private String name;
     @JsonProperty("Type")
     private String type;
+    @JsonProperty("SkyscannerCode")
+    private String skyscannerCode;
     @JsonProperty("CityName")
     private String cityName;
     @JsonProperty("CountryName")

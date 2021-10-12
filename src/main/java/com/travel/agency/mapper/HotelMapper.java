@@ -15,24 +15,32 @@ import java.util.stream.Collectors;
 public class HotelMapper {
 
     public Hotel mapFetchedHotelToDomain(FetchedHotelsDto fetchedHotelsDto) {
-        Entities entities = fetchedHotelsDto.getSuggestions().get(0).getEntities().get(0);
+        Entities entities = fetchedHotelsDto.getSuggestions().get(1).getEntities().get(0);
         return new Hotel(
                 entities.getHoteId(),
                 entities.getHotelName(),
                 fetchedHotelsDto.getLocation()
         );
     }
+//
+//    public RoomDto mapFetchedHotelRoomToDto( Room room) {
+//        return new RoomDto(
+//                room.getName(),
+//                room.getRatePlans().get(0).getPrice().getCost()
+//        );
+//    }
 
-    public RoomDto mapFetchedHotelRoomToDto(Room room) {
+
+//    public List<RoomDto> mapHotelRoomsToListDto( HotelDetailsDto hotelDetailsDto) {
+//        return hotelDetailsDto.getData().getBody().getRoomsAndRates().getRoomsList().stream()
+//                .map(this::mapFetchedHotelRoomToDto)
+//                .collect(Collectors.toList());
+//    }
+
+    public RoomDto mapHotelDetalisToRoomDto(HotelDetailsDto hotelDetailsDto) {
         return new RoomDto(
-                room.getName(),
-                room.getRatePlans().get(0).getPrice().getCost()
+                hotelDetailsDto.getData().getBody().getPropertyDescription().getName(),
+                hotelDetailsDto.getData().getBody().getPropertyDescription().getStarRating()
         );
-    }
-
-    public List<RoomDto> mapHotelRoomsToListDto(HotelDetailsDto hotelDetailsDto) {
-        return hotelDetailsDto.getData().getBody().getRoomsAndRates().getRoomsList().stream()
-                .map(this::mapFetchedHotelRoomToDto)
-                .collect(Collectors.toList());
     }
 }

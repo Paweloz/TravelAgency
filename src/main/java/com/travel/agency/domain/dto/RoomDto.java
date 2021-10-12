@@ -9,5 +9,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class RoomDto {
     private String name;
-    private BigDecimal price;
+    private String starRating;
+    //private BigDecimal price;
 }

@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Body {
-    @JsonProperty("propertyDescription")
-    private PropertyDescription propertyDescription;
-//    @JsonProperty("roomsAndRates")
-//    private RoomsAndRates roomsAndRates;
+public class PropertyDescription {
+    @JsonProperty("name")
+    private String name;
+    @JsonProperty("starRating")
+    private String starRating;
 }

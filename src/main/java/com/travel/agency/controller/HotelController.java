@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/hotel")
+@RequestMapping("/v1/hotel")
 @RequiredArgsConstructor
 public class HotelController {
     private final HotelService hotelService;
@@ -19,8 +19,8 @@ public class HotelController {
         return hotelService.findHotelByLocation(location);
     }
 
-    @GetMapping
-    public List<RoomDto> getPricing(@RequestParam String hotelId, String checkIn, String checkOut) {
+    @GetMapping()
+    public RoomDto getPricing(@RequestParam String hotelId, String checkIn, String checkOut) {
         return hotelService.getPricingForRooms(hotelId, checkIn, checkOut);
     }
 }

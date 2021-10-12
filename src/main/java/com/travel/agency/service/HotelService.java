@@ -7,21 +7,22 @@ import com.travel.agency.domain.dto.hotels.FetchedHotelsDto;
 import com.travel.agency.domain.dto.hotels.HotelDetailsDto;
 import com.travel.agency.mapper.HotelMapper;
 import com.travel.agency.repository.HotelDao;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class HotelService {
     private final HotelDao hotelDao;
     private final HotelsClient hotelsClient;
     private final HotelMapper hotelMapper;
 
-    public List<RoomDto> getPricingForRooms(String hotelId, String checkIn, String checkOut) {
+    public RoomDto getPricingForRooms(String hotelId, String checkIn, String checkOut) {
         HotelDetailsDto hotelDetailsDto = hotelsClient.getPricingForHotel(hotelId, checkIn, checkOut);
-        return hotelMapper.mapHotelRoomsToListDto(hotelDetailsDto);
+        //List<RoomDto> list = hotelMapper.mapHotelRoomsToListDto(hotelDetailsDto);
+
+        return hotelMapper.mapHotelDetalisToRoomDto(hotelDetailsDto);
     }
 
     
