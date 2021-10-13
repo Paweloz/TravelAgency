@@ -1,11 +1,9 @@
 package com.travel.agency.controller;
 
-import com.travel.agency.domain.dto.RoomDto;
+import com.travel.agency.domain.dto.HotelDto;
 import com.travel.agency.service.HotelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @CrossOrigin("*")
@@ -20,7 +18,7 @@ public class HotelController {
     }
 
     @GetMapping()
-    public RoomDto getPricing(@RequestParam String hotelId, String checkIn, String checkOut) {
-        return hotelService.getPricingForRooms(hotelId, checkIn, checkOut);
+    public HotelDto getPricing(@RequestParam String hotelId, String checkIn, String checkOut) {
+        return hotelService.getHotelDetails(hotelId, checkIn, checkOut);
     }
 }

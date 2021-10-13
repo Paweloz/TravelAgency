@@ -9,4 +9,5 @@ import org.springframework.transaction.annotation.Transactional;
 public interface HotelDao extends CrudRepository<Hotel, Long> {
     Boolean existsByLocation(String location);
     Hotel findByLocation(String location);
+    Hotel findByHotelId(String hotelId);
 }

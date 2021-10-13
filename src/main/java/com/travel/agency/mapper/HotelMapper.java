@@ -1,7 +1,7 @@
 package com.travel.agency.mapper;
 
 import com.travel.agency.domain.Hotel;
-import com.travel.agency.domain.dto.RoomDto;
+import com.travel.agency.domain.dto.HotelDto;
 import com.travel.agency.domain.dto.hotels.Entities;
 import com.travel.agency.domain.dto.hotels.FetchedHotelsDto;
 import com.travel.agency.domain.dto.hotels.HotelDetailsDto;
@@ -20,12 +20,23 @@ public class HotelMapper {
         );
     }
 
-    public RoomDto mapHotelDetalisToRoomDto(HotelDetailsDto hotelDetailsDto) {
-        return new RoomDto(
+    public HotelDto mapHotelToHotelDto(Hotel hotelFromDb) {
+        return new HotelDto(
+                hotelFromDb.getHotelId(),
+                hotelFromDb.getName(),
+                hotelFromDb.getStarRating(),
+                hotelFromDb.getPricePerNight()
+        );
+    }
+
+    public HotelDto mapHotelDetalisToHotelDto(HotelDetailsDto hotelDetailsDto, String hotelId) {
+        return new HotelDto(
+                hotelId,
                 hotelDetailsDto.getData().getBody().getPropertyDescription().getName(),
                 hotelDetailsDto.getData().getBody().getPropertyDescription().getStarRating(),
                 hotelDetailsDto.getData().getBody().getPropertyDescription().getFeaturedPrice()
                         .getCurrentPrice().getPlainPrice()
+
         );
     }
 }
