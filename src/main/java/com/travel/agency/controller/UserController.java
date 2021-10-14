@@ -24,7 +24,7 @@ public class UserController {
 
     @PutMapping("/edit")
     public void editUser(@RequestBody UserDto userDto) {
-
+          userService.saveUser(userMapper.mapUserDtoToDomain(userDto));
     }
 
     @DeleteMapping("/delete")
@@ -42,9 +42,9 @@ public class UserController {
         return userService.checkExistsByUsername(name);
     }
 
-    @GetMapping("/tmp")
-    public void getUserDetails() {
-        System.out.println("Działa");
+    @GetMapping("/getDetails")
+    public UserDto getUserDetails(@RequestParam Long userId) {
+        return  userMapper.mapUserToDto(userService.getUserById(userId));
     }
 
 }

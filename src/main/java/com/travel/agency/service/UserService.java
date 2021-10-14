@@ -1,6 +1,7 @@
 package com.travel.agency.service;
 
 import com.travel.agency.domain.User;
+import com.travel.agency.domain.dto.UserDto;
 import com.travel.agency.repository.UserDao;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -26,5 +27,7 @@ public class UserService implements UserDetailsService {
         return userDao.findUserByName(username);
     }
 
-
+    public User getUserById(Long userId) {
+        return userDao.findUserById(userId);
+    }
 }
