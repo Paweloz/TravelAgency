@@ -38,13 +38,9 @@ public class User implements UserDetails {
     @Transient
     private boolean accountNonLocked;
 
-    @ManyToMany
-    @JoinTable(
-            name = "Customer_has_Travel",
-            joinColumns = @JoinColumn(name = "CustomerID", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "TravelID", referencedColumnName = "id")
-    )
-    private List<Bookings> bookingsList;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "User_ID")
+    private Booking booking;
     @OneToMany(
             targetEntity = Login.class,
             mappedBy = "user",

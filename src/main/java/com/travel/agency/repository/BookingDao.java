@@ -7,6 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Repository
-public interface TravelDao extends CrudRepository<Booking, Long> {
+public interface BookingDao extends CrudRepository<Booking, Long> {
 
 }
