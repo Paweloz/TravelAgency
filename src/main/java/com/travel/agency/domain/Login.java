@@ -20,6 +20,6 @@ public class Login {
     private LocalDate loggedInTime;
     private LocalDate loggedOutTime;
     @ManyToOne
-    @JoinColumn(name = "Customer")
-    private Customer customer;
+    @JoinColumn(name = "User")
+    private User user;
 }

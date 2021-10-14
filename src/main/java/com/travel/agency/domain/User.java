@@ -1,7 +1,5 @@
 package com.travel.agency.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,7 +16,7 @@ import java.util.Objects;
 @Entity
 @Getter
 @NoArgsConstructor
-public class Customer implements UserDetails {
+public class User implements UserDetails {
     @Id
     @GeneratedValue
     @NotNull
@@ -46,21 +44,21 @@ public class Customer implements UserDetails {
             joinColumns = @JoinColumn(name = "CustomerID", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "TravelID", referencedColumnName = "id")
     )
-    private List<Travel> travelList;
+    private List<Bookings> bookingsList;
     @OneToMany(
             targetEntity = Login.class,
-            mappedBy = "customer",
+            mappedBy = "user",
             fetch = FetchType.LAZY)
     private List<Login> logins;
     @OneToMany(
             targetEntity = Payment.class,
-            mappedBy = "customer",
+            mappedBy = "user",
             fetch = FetchType.LAZY
     )
     private List<Payment> customerPayments;
 
 
-    public Customer(String name, String lastname, String email, String phone, String password, String role) {
+    public User(String name, String lastname, String email, String phone, String password, String role) {
         this.name = name;
         this.lastname = lastname;
         this.email = email;
@@ -72,14 +70,14 @@ public class Customer implements UserDetails {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Customer)) return false;
-        Customer customer = (Customer) o;
-        return Objects.equals(getId(), customer.getId()) && Objects.equals(getName(),
-                customer.getName()) && Objects.equals(getLastname(),
-                customer.getLastname()) && Objects.equals(getEmail(),
-                customer.getEmail()) && Objects.equals(getPhone(),
-                customer.getPhone()) && Objects.equals(getRole(),
-                customer.getRole()) && Objects.equals(getPassword(), customer.getPassword());
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return Objects.equals(getId(), user.getId()) && Objects.equals(getName(),
+                user.getName()) && Objects.equals(getLastname(),
+                user.getLastname()) && Objects.equals(getEmail(),
+                user.getEmail()) && Objects.equals(getPhone(),
+                user.getPhone()) && Objects.equals(getRole(),
+                user.getRole()) && Objects.equals(getPassword(), user.getPassword());
     }
 
     @Override
@@ -117,7 +115,7 @@ public class Customer implements UserDetails {
         return true;
     }
 
-    public Customer(Long id, String name, String lastname, String email, String phone, String password, String role) {
+    public User(Long id, String name, String lastname, String email, String phone, String password, String role) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;

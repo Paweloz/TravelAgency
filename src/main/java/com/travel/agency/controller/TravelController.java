@@ -15,7 +15,6 @@ import java.util.List;
 public class TravelController {
 
     private final TravelService travelService;
-    private final TravelMapper travelMapper;
 
     @GetMapping
     public List<TravelDto> getTripsByDestination() {

@@ -13,7 +13,7 @@ import java.util.Collections;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerDto implements UserDetails {
+public class UserDto implements UserDetails {
     private Long id;
     private String username;
     private String lastname;
@@ -52,7 +52,7 @@ public class CustomerDto implements UserDetails {
         return true;
     }
 
-    public CustomerDto(String username, String lastname, String email, String phone, String password, String role) {
+    public UserDto(String username, String lastname, String email, String phone, String password, String role) {
         this.username = username;
         this.lastname = lastname;
         this.email = email;
@@ -60,7 +60,7 @@ public class CustomerDto implements UserDetails {
         this.password = password;
         this.role = role;
     }
-    public CustomerDto(Long id, String username, String lastname, String email, String phone, String password, String role) {
+    public UserDto(Long id, String username, String lastname, String email, String phone, String password, String role) {
         this.id = id;
         this.username = username;
         this.lastname = lastname;

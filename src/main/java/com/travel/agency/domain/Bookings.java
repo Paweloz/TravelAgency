@@ -1,9 +1,7 @@
 package com.travel.agency.domain;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.jmx.export.annotation.ManagedAttribute;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,7 +12,7 @@ import java.util.List;
 @Entity
 @Getter
 @RequiredArgsConstructor
-public class Travel {
+public class Bookings {
     @Id
     @GeneratedValue
     @NotNull
@@ -24,12 +22,12 @@ public class Travel {
     private String description;
     private LocalDate startDate;
     private LocalDate finishDate;
-    private BigDecimal flightPrice;
+    private BigDecimal totalPrice;
     @ManyToMany(
-            targetEntity = Customer.class,
-            mappedBy = "travelList",
+            targetEntity = User.class,
+            mappedBy = "bookingsList",
             fetch = FetchType.LAZY
     )
-    private List<Customer> customerList;
+    private List<User> userList;
 
 }

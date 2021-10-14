@@ -22,6 +22,6 @@ public class Payment {
     private LocalDate paymentDateDeadline;
     private boolean isPaid;
     @ManyToOne
-    @JoinColumn(name = "Customer")
-    private Customer customer;
+    @JoinColumn(name = "User")
+    private User user;
 }
