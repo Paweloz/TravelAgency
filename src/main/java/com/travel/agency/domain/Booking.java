@@ -25,7 +25,8 @@ public class Booking {
     private LocalDate startDate;
     private LocalDate finishDate;
     private BigDecimal totalPrice;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
     private User user;
 
     public Booking(String origin, String destination, LocalDate startDate, LocalDate finishDate, BigDecimal totalPrice, User user) {

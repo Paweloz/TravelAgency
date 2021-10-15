@@ -38,9 +38,12 @@ public class User implements UserDetails {
     @Transient
     private boolean accountNonLocked;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "User_ID")
-    private Booking booking;
+    @OneToMany(
+            targetEntity = Booking.class,
+            mappedBy = "user",
+            fetch = FetchType.LAZY
+    )
+    private List<Booking> bookings;
     @OneToMany(
             targetEntity = Login.class,
             mappedBy = "user",

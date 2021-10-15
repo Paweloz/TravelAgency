@@ -7,6 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 @RequiredArgsConstructor
 public class BookingMapper {
@@ -19,7 +22,24 @@ public class BookingMapper {
                 bookingDto.getStartDate(),
                 bookingDto.getFinishDate(),
                 bookingDto.getTotalPrice(),
-                userDao.findUserById(bookingDto.getId())
+                userDao.findUserById(bookingDto.getUserId())
         );
+    }
+
+    public BookingDto mapBookingToBookingDto(Booking booking) {
+        return new BookingDto(
+                booking.getOrigin(),
+                booking.getDestination(),
+                booking.getStartDate(),
+                booking.getFinishDate(),
+                booking.getTotalPrice(),
+                booking.getUser().getId()
+        );
+    }
+
+    public List<BookingDto> mapBookingsToBookingsDtoList(List<Booking> bookingsFromDb) {
+        return bookingsFromDb.stream()
+                .map(this::mapBookingToBookingDto)
+                .collect(Collectors.toList());
     }
 }
