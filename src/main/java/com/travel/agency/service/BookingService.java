@@ -1,6 +1,8 @@
 package com.travel.agency.service;
 
 import com.travel.agency.domain.Booking;
+import com.travel.agency.domain.dto.BookingDto;
+import com.travel.agency.mapper.BookingMapper;
 import com.travel.agency.repository.BookingDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,13 +13,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookingService {
     private final BookingDao bookingDao;
+    private final BookingMapper bookingMapper;
 
-    public void saveBooking(Booking booking) {
-        bookingDao.save(booking);
+    public void saveBooking(BookingDto bookingDto) {
+        bookingDao.save(bookingMapper.mapBookingDtoToBooking(bookingDto));
     }
 
-    public List<Booking> getBookingsById(Long userId) {
-        return bookingDao.findAllByUser_Id(userId);
+    public List<BookingDto> getBookingsById(Long userId) {
+       return bookingMapper.mapBookingsToBookingsDtoList(bookingDao.findAllByUser_Id(userId));
     }
 
     public void removeBooking(Long bookingId) {

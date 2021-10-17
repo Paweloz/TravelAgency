@@ -1,8 +1,6 @@
 package com.travel.agency.controller;
 
-import com.travel.agency.domain.User;
 import com.travel.agency.domain.dto.UserDto;
-import com.travel.agency.mapper.UserMapper;
 import com.travel.agency.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -14,17 +12,16 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService userService;
-    private final UserMapper userMapper;
+
 
     @PostMapping()
     public Boolean createUser(@RequestBody UserDto userDto) {
-        User userToSave = userMapper.mapUserDtoToDomain(userDto);
-        return userService.saveUser(userToSave) != null;
+        return userService.saveUser(userDto) != null;
     }
 
     @PutMapping("/edit")
     public void editUser(@RequestBody UserDto userDto) {
-          userService.saveUser(userMapper.mapUserDtoToDomain(userDto));
+          userService.saveUser(userDto);
     }
 
     @DeleteMapping("/delete")
@@ -34,7 +31,7 @@ public class UserController {
 
     @GetMapping()
     public UserDto getUserByName(@RequestParam String name) {
-        return userMapper.mapUserToDto(userService.loadUserByUsername(name));
+        return userService.loadUserByUsername(name);
     }
 
     @GetMapping("/exist")
@@ -44,7 +41,7 @@ public class UserController {
 
     @GetMapping("/getDetails")
     public UserDto getUserDetails(@RequestParam Long userId) {
-        return  userMapper.mapUserToDto(userService.getUserById(userId));
+        return  userService.getUserById(userId);
     }
 
 }

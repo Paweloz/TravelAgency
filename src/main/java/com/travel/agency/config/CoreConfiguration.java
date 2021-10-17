@@ -23,6 +23,11 @@ public class CoreConfiguration {
         return new RestTemplate();
     }
 
+    @Bean
+    public PasswordEncoder getPasswordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+
 //    @Bean
 //    public Docket api() {
 //        return new Docket(DocumentationType.SWAGGER_2)

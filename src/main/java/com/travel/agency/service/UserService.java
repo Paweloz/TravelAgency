@@ -1,6 +1,8 @@
 package com.travel.agency.service;
 
 import com.travel.agency.domain.User;
+import com.travel.agency.domain.dto.UserDto;
+import com.travel.agency.mapper.UserMapper;
 import com.travel.agency.repository.UserDao;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,9 +14,10 @@ import org.springframework.stereotype.Service;
 public class UserService implements UserDetailsService {
 
     private final UserDao userDao;
+    private final UserMapper userMapper;
 
-    public User saveUser(User user) {
-        return userDao.save(user);
+    public User saveUser(UserDto userDto) {
+        return userDao.save(userMapper.mapUserDtoToDomain(userDto));
     }
 
     public boolean checkExistsByUsername(String name) {
@@ -22,11 +25,11 @@ public class UserService implements UserDetailsService {
     }
 
     @Override
-    public User loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userDao.findUserByName(username);
+    public UserDto loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userMapper.mapUserToDto(userDao.findUserByName(username));
     }
 
-    public User getUserById(Long userId) {
-        return userDao.findUserById(userId);
+    public UserDto getUserById(Long userId) {
+        return userMapper.mapUserToDto(userDao.findUserById(userId));
     }
 }

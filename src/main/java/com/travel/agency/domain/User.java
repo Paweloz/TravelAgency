@@ -39,6 +39,13 @@ public class User implements UserDetails {
     private boolean accountNonLocked;
 
     @OneToMany(
+            targetEntity = UserMessage.class,
+            mappedBy = "user",
+            fetch = FetchType.LAZY
+    )
+    private List<UserMessage> messages;
+
+    @OneToMany(
             targetEntity = Booking.class,
             mappedBy = "user",
             fetch = FetchType.LAZY
