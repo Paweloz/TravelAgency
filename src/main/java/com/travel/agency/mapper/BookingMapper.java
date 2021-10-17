@@ -5,7 +5,6 @@ import com.travel.agency.domain.dto.BookingDto;
 import com.travel.agency.repository.UserDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,6 +27,7 @@ public class BookingMapper {
 
     public BookingDto mapBookingToBookingDto(Booking booking) {
         return new BookingDto(
+                booking.getId(),
                 booking.getOrigin(),
                 booking.getDestination(),
                 booking.getStartDate(),

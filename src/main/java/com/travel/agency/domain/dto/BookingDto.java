@@ -1,12 +1,15 @@
 package com.travel.agency.domain.dto;
 
-import com.travel.agency.domain.User;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class BookingDto {
 
     private Long id;

@@ -14,7 +14,7 @@ public class AdminConfig {
 
     public AdminConfig(UserService userService, UserMapper userMapper) {
         UserDto userDto = new UserDto("ADMIN","ADMIN","ADMIN@MAIL.COM",
-                "123 456 789", "ADMIN", "ADMIN");
+                "123456789", "ADMIN", "ADMIN");
         if(!userService.checkExistsByUsername(userDto.getUsername())){
             userService.saveUser(userMapper.mapUserDtoToDomain(userDto));
             LOGGER.info("Create Admin account in the database");

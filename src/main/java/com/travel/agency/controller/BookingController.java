@@ -27,4 +27,9 @@ public class BookingController {
         List<Booking> bookingsFromDb = bookingService.getBookingsById(userId);
         return bookingMapper.mapBookingsToBookingsDtoList(bookingsFromDb);
     }
+
+    @DeleteMapping
+    public void deleteBookingById(@RequestParam Long bookingId) {
+        bookingService.removeBooking(bookingId);
+    }
 }
