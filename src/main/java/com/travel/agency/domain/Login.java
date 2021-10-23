@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -17,9 +17,15 @@ public class Login {
     @GeneratedValue
     @NotNull
     private Long id;
-    private LocalDate loggedInTime;
-    private LocalDate loggedOutTime;
+    private LocalDateTime date;
+    private String eventType;
     @ManyToOne
     @JoinColumn(name = "User")
     private User user;
+
+    public Login(LocalDateTime date, String eventType, User user) {
+        this.date = date;
+        this.eventType = eventType;
+        this.user = user;
+    }
 }
