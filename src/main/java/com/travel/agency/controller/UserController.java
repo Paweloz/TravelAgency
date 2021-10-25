@@ -5,6 +5,8 @@ import com.travel.agency.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("v1/user")
 @CrossOrigin(origins = "*")
@@ -24,9 +26,14 @@ public class UserController {
           userService.saveUser(userDto);
     }
 
-    @DeleteMapping("/delete")
-    public void removeUser(@RequestParam Long customerId) {
+    @DeleteMapping()
+    public void removeUser(@RequestParam Long userId) {
+        userService.removeUserById(userId);
+    }
 
+    @GetMapping("/all")
+    public List<UserDto> getAllUsers() {
+        return userService.getAllUsers();
     }
 
     @GetMapping()

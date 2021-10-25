@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 public class MailService {
 
     private final JavaMailSender javaMailSender;
+    private final AppProblemService appProblemService;
+    private final static String PROBLEM = "Failed to process email sending ";
 
     public void send(Mail mail) {
         try {
@@ -21,7 +23,8 @@ public class MailService {
             javaMailSender.send(simpleMailMessage);
             log.info("Email has been sent");
         } catch (MailException e) {
-            log.error("Failed to process email sending: " + e.getMessage());
+            log.warn(PROBLEM + e.getMessage());
+            appProblemService.saveProblem(PROBLEM + e.getMessage());
         }
     }
 

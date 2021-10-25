@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/problem")
+@RequestMapping("/v1/problem")
 @RequiredArgsConstructor
 public class AppProblemController {
 
@@ -17,6 +17,11 @@ public class AppProblemController {
     @PostMapping
     public void createProblem(@RequestBody AppProblemDto appProblemDto) {
         appProblemService.saveProblem(appProblemDto);
+    }
+
+    @DeleteMapping
+    public void deleteProblem(@RequestParam Long problemId) {
+        appProblemService.removeProblem(problemId);
     }
 
     @GetMapping

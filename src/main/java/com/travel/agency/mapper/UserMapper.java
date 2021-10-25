@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 @AllArgsConstructor
 public class UserMapper {
@@ -33,5 +36,11 @@ public class UserMapper {
                 userDto.getPhone(),
                 passwordEncoder.encode(userDto.getPassword()),
                 userDto.getRole() != null ? userDto.getRole() : USER_ROLE);
+    }
+
+    public List<UserDto> mapUsersToUserDtoList(List<User> users) {
+        return users.stream()
+                .map(this::mapUserToDto)
+                .collect(Collectors.toList());
     }
 }

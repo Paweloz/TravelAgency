@@ -7,6 +7,7 @@ import com.travel.agency.repository.AppProblemDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -16,6 +17,12 @@ public class AppProblemService {
     private final AppProblemDao appProblemDao;
     private final AppProblemMapper appProblemMapper;
 
+    public void saveProblem(String problem) {
+        AppProblem appProblem = new AppProblem(problem, LocalDateTime.now());
+        appProblemDao.save(appProblem);
+
+    }
+
     public void saveProblem(AppProblemDto appProblemDto) {
         appProblemDao.save(appProblemMapper.mapProblemDtoToProblem(appProblemDto));
     }
@@ -24,4 +31,7 @@ public class AppProblemService {
         return appProblemMapper.mapProblemToProblemDtoList(appProblemDao.findAll());
     }
 
+    public void removeProblem(Long problemId) {
+        appProblemDao.deleteById(problemId);
+    }
 }

@@ -54,7 +54,9 @@ public class User implements UserDetails {
     @OneToMany(
             targetEntity = Login.class,
             mappedBy = "user",
-            fetch = FetchType.LAZY)
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.REMOVE
+    )
     private List<Login> logins;
     @OneToMany(
             targetEntity = Payment.class,
