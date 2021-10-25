@@ -1,7 +1,7 @@
 package com.travel.agency.controller;
 
 import com.travel.agency.domain.dto.AppProblemDto;
-import com.travel.agency.service.AppProblemService;
+import com.travel.agency.facade.AppProblemFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,20 +12,20 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AppProblemController {
 
-    private final AppProblemService appProblemService;
+    private final AppProblemFacade appProblemFacade;
 
     @PostMapping
     public void createProblem(@RequestBody AppProblemDto appProblemDto) {
-        appProblemService.saveProblem(appProblemDto);
+        appProblemFacade.createProblem(appProblemDto);
     }
 
     @DeleteMapping
     public void deleteProblem(@RequestParam Long problemId) {
-        appProblemService.removeProblem(problemId);
+        appProblemFacade.deleteProblem(problemId);
     }
 
     @GetMapping
     public List<AppProblemDto> getProblems() {
-        return appProblemService.getProblems();
+        return appProblemFacade.getProblems();
     }
 }

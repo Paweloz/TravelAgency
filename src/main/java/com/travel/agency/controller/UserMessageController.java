@@ -1,7 +1,7 @@
 package com.travel.agency.controller;
 
 import com.travel.agency.domain.dto.UserMessageDto;
-import com.travel.agency.service.UserMessageService;
+import com.travel.agency.facade.UserMessageFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserMessageController {
 
-    private final UserMessageService userMessageService;
+    private final UserMessageFacade userMessageFacade;;
 
     @PostMapping
     public void createMessage(@RequestBody UserMessageDto userMessageDto) {
-        userMessageService.saveMessage(userMessageDto);
+        userMessageFacade.createMessage(userMessageDto);
     }
 }

@@ -1,6 +1,7 @@
 package com.travel.agency.controller;
 
 import com.travel.agency.domain.dto.TravelDto;
+import com.travel.agency.facade.TravelFacade;
 import com.travel.agency.mapper.TravelMapper;
 import com.travel.agency.service.TravelService;
 import lombok.Getter;
@@ -14,23 +15,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TravelController {
 
-    private final TravelService travelService;
-
-    @GetMapping
-    public List<TravelDto> getTripsByDestination() {
-        return null;
-    }
-
-    @PostMapping
-    public List<TravelDto> createBasicOffer() {  // not sure yet
-        return null;
-    }
+    private final TravelFacade travelFacade;
 
     @GetMapping("/getTrips")
     public List<TravelDto> getTripsByDestination(@RequestParam String origin, String destination) {
-        return travelService.findTripsByDestination(origin, destination);
+        return travelFacade.getTripsByDestination(origin, destination);
     }
-
-
-
 }
