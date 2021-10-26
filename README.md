@@ -1,6 +1,6 @@
-#Final kodilla project - Travel agency
+# Final kodilla project - Travel agency
 
-##Startup manual
+## Startup manual
 
 1. Download and run TravelAgencyFrontend. Repository link: https://github.com/Paweloz/TravelAgencyFrontend.git
 2. Download and run TravelAgencyBackend from this repository.
@@ -11,7 +11,7 @@
    - If you want to create User account click "Register" button, fill fields and click "Back"
 5. Travel Agency app is ready to use!
 
-##App description
+## App description
 
 Travel Agency app uses to external sources of data Skycanner and Hotels.com and combines result of those two into trips,
 which users can book. Due limited API free requests to Hotels.com ( 500 / month ) all data retrieved from them is stored in 
