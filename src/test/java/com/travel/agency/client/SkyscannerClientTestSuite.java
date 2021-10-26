@@ -1,22 +1,26 @@
 package com.travel.agency.client;
 
-import com.travel.agency.client.SkyscannerClient;
-import com.travel.agency.domain.dto.skyscanner.AvaliableRoutesDto;
-import org.junit.jupiter.api.Assertions;
+import com.travel.agency.config.SkyscannerConfig;
+import com.travel.agency.service.AppProblemService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class SkyscannerClientTestSuite {
+class SkyscannerClientTestSuite {
     @Autowired
-    private SkyscannerClient skyscannerClient;
+    private RestTemplate restTemplate;
+    @Autowired
+    private SkyscannerConfig skyscannerConfig;
+    @Autowired
+    private AppProblemService appProblemService;
+    private final static String PROBLEM = "Failed to process request to Skyscanner API ";
+
 
     @Test
-    void testGetAvaliableRoutes() {
-        AvaliableRoutesDto avaliableRoutesDtos = skyscannerClient.getAvaliableRoutes("KRK", "CFU");
-        System.out.println(avaliableRoutesDtos.toString());
+    void getAvaliableRoutes() {
     }
 }

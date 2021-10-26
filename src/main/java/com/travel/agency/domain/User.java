@@ -58,22 +58,6 @@ public class User implements UserDetails {
             cascade = CascadeType.REMOVE
     )
     private List<Login> logins;
-    @OneToMany(
-            targetEntity = Payment.class,
-            mappedBy = "user",
-            fetch = FetchType.LAZY
-    )
-    private List<Payment> customerPayments;
-
-
-    public User(String name, String lastname, String email, String phone, String password, String role) {
-        this.name = name;
-        this.lastname = lastname;
-        this.email = email;
-        this.phone = phone;
-        this.password = password;
-        this.role = role;
-    }
 
     @Override
     public boolean equals(Object o) {

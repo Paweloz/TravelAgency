@@ -5,12 +5,13 @@ import com.travel.agency.domain.dto.TravelDto;
 import com.travel.agency.domain.dto.skyscanner.AvaliableRoutesDto;
 import com.travel.agency.mapper.TravelMapper;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@Data
+@RequiredArgsConstructor
 public class TravelService {
     private final SkyscannerClient skyscannerClient;
     private final TravelMapper travelMapper;

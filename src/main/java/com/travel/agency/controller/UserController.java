@@ -2,7 +2,6 @@ package com.travel.agency.controller;
 
 import com.travel.agency.domain.dto.UserDto;
 import com.travel.agency.facade.UserFacade;
-import com.travel.agency.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
