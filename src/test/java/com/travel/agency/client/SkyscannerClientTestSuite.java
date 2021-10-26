@@ -1,4 +1,4 @@
-package com.travel.agency.client.skyscanner;
+package com.travel.agency.client;
 
 import com.travel.agency.client.SkyscannerClient;
 import com.travel.agency.domain.dto.skyscanner.AvaliableRoutesDto;
