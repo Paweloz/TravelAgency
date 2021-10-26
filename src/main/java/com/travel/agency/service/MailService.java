@@ -1,6 +1,6 @@
 package com.travel.agency.service;
 
-import com.travel.agency.domain.Mail;
+import com.travel.agency.domain.MailBulider.Mail;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.MailException;

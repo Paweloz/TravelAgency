@@ -1,7 +1,7 @@
 package com.travel.agency.scheduler;
 
 import com.travel.agency.config.AdminConfig;
-import com.travel.agency.domain.Mail;
+import com.travel.agency.domain.MailBulider.Mail;
 import com.travel.agency.repository.AppProblemDao;
 import com.travel.agency.service.MailService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ public class EmailScheduler {
 
     @Scheduled(cron = "0 0 0 10 * *")
     public void notifyProblemsToAdmin() {
-        mailService.send(Mail.builder()
+        mailService.send(new Mail.MailBuilder()
                         .receiverEmail(adminConfig.getAdminMail())
                         .subject("Current App Problem status")
                         .message(buildMessage())
